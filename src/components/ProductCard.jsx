@@ -223,3 +223,5 @@ export default function ProductCard() {
         </div>
     );
 }
+
+// Nothing was done today
