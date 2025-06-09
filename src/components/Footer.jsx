@@ -3,7 +3,7 @@ export default function Footer() {
     const currentYear = new Date().getFullYear()
     
     return (
-        <footer className="bg-neutral p-7">
+        <footer className="bg-special p-7">
             <div>
                 <p className="text-lg text-white">LOGO</p>
             </div>
@@ -48,7 +48,7 @@ export default function Footer() {
                 </div>
             </section>
 
-            <p className="text-sm text-center">&copy; {currentYear} Logo Name. All rights reserved.</p>
+            <p className="text-sm text-center text-white font-league">&copy; {currentYear} Logo Name. All rights reserved.</p>
         </footer>
     )
 }

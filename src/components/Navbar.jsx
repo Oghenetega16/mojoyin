@@ -12,11 +12,11 @@ export default function Navbar() {
         <nav className="">
             <div className="flex justify-between items-center px-8 m-3 py-5 bg-white shadow-custom">
                 <p className="text-lg">LOGO</p>
-                {showMenu === true && <i class="fa-solid fa-bars text-2xl" onClick={handleMenu}></i>}
+                {showMenu === true && <i class="fa-solid fa-bars text-2xl cursor-pointer" onClick={handleMenu}></i>}
             </div>
 
             <div className={`${showMenu === true ? 'hidden' : 'block'} bg-white h-full w-8/9 p-5 absolute top-0 shadow-custom`}>
-                <i class="fa-solid fa-xmark mb-10 text-2xl" onClick={handleMenu}></i>
+                <i class="fa-solid fa-xmark mb-10 text-2xl cursor-pointer" onClick={handleMenu}></i>
                 <ul className="space-y-5">
                     <li><Link to='/'>Home</Link></li>
                     <li><Link to='/menu'>Menu</Link></li>

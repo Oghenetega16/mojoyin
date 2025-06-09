@@ -32,7 +32,7 @@ export default function HeroBanner() {
                 combine form and function in bringing your vision to
                 life. Create a room in your own style with our collection
                 and make your property a reflection of you and what you love.</p>
-                <button className="m-8 px-8 py-4 bg-neutral uppercase font-semibold">Shop Now</button>
+                <button className="m-8 px-8 py-4 bg-neutral uppercase font-semibold cursor-pointer">Shop Now</button>
             </div>
         </section>
     )

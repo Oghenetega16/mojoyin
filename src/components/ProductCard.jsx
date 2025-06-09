@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Heart, ShoppingCart, ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
+import { Heart, ShoppingCart, ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react'
 
 export default function ProductCard() {
     const products = [
@@ -47,82 +47,70 @@ export default function ProductCard() {
         },
     ];
 
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const [isPlaying, setIsPlaying] = useState(true);
-    const [favorites, setFavorites] = useState(new Set());
+    const [currentSlide, setCurrentSlide] = useState(0)
+    const [isPlaying, setIsPlaying] = useState(true)
+    const [favorites, setFavorites] = useState(new Set())
 
     useEffect(() => {
-        if (!isPlaying) return;
+        if (!isPlaying) return
 
         const interval = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % products.length);
-        }, 4000);
+            setCurrentSlide((prev) => (prev + 1) % products.length)
+        }, 4000)
 
-        return () => clearInterval(interval);
-    }, [isPlaying, products.length]);
-
-    const nextSlide = () => {
-        setCurrentSlide((prev) => (prev + 1) % products.length);
-    };
-
-    const prevSlide = () => {
-        setCurrentSlide((prev) => (prev - 1 + products.length) % products.length);
-    };
+        return () => clearInterval(interval)
+    }, [isPlaying, products.length])
 
     const goToSlide = (index) => {
-        setCurrentSlide(index);
-    };
-
-    const togglePlayPause = () => {
-        setIsPlaying(!isPlaying);
-    };
+        setCurrentSlide(index)
+    }
 
     const toggleFavorite = (productId) => {
         setFavorites(prev => {
-            const newFavorites = new Set(prev);
+            const newFavorites = new Set(prev)
             if (newFavorites.has(productId)) {
-                newFavorites.delete(productId);
+                newFavorites.delete(productId)
             } else {
-                newFavorites.add(productId);
+                newFavorites.add(productId)
             }
-            return newFavorites;
-        });
-    };
+            return newFavorites
+        })
+    }
 
-    const getPrevIndex = () => (currentSlide - 1 + products.length) % products.length;
-    const getNextIndex = () => (currentSlide + 1) % products.length;
+    const getPrevIndex = () => (currentSlide - 1 + products.length) % products.length
+    const getNextIndex = () => (currentSlide + 1) % products.length
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4">
+        <div className=" bg-white flex items-center justify-center p-4">
             <div className="w-full max-w-md">
                 <h1 className="text-4xl font-bold text-center mb-8 text-white">Our Meals</h1>
                 
-                <div className="relative h-[600px] perspective-1000">
+                <div className="relative h-[500px] perspective-1000">
                     {products.map((product, index) => {
-                        const isActive = index === currentSlide;
-                        const isPrev = index === getPrevIndex();
-                        const isNext = index === getNextIndex();
+                        const isActive = index === currentSlide
+                        const isPrev = index === getPrevIndex()
+                        const isNext = index === getNextIndex()
                         
-                        let transformClasses = '';
-                        let opacityClasses = '';
-                        let zIndexClasses = '';
+                        let transformClasses = ''
+                        let opacityClasses = ''
+                        let zIndexClasses = ''
                         
                         if (isActive) {
-                            transformClasses = 'scale-100 translate-x-0 rotate-0';
-                            opacityClasses = 'opacity-100';
-                            zIndexClasses = 'z-30';
+                            transformClasses = 'scale-100 translate-x-0 rotate-0'
+                            opacityClasses = 'opacity-100'
+                            zIndexClasses = 'z-30'
                         } else if (isPrev) {
-                            transformClasses = 'scale-90 -translate-x-8 -rotate-3';
-                            opacityClasses = 'opacity-40';
-                            zIndexClasses = 'z-20';
+                            transformClasses = 'scale-90 -translate-x-8 -rotate-3'
+                            opacityClasses = 'opacity-40'
+                            zIndexClasses = 'z-20'
                         } else if (isNext) {
-                            transformClasses = 'scale-90 translate-x-8 rotate-3';
-                            opacityClasses = 'opacity-40';
-                            zIndexClasses = 'z-20';
+                            transformClasses = 'scale-90 translate-x-8 rotate-3'
+                            opacityClasses = 'opacity-40'
+                            zIndexClasses = 'z-20'
                         } else {
-                            transformClasses = 'scale-75 translate-x-0';
-                            opacityClasses = 'opacity-0';
-                            zIndexClasses = 'z-10';
+                            transformClasses = 'scale-75 translate-x-0'
+                            opacityClasses = 'opacity-0'
+                            zIndexClasses = 'z-10'
                         }
 
                         return (
@@ -144,7 +132,7 @@ export default function ProductCard() {
                                             {product.desc}
                                         </p>
                                         <div className="flex items-center justify-between">
-                                            <p className="text-2xl font-bold text-green-600">
+                                            <p className="text-2xl font-bold text-neutral">
                                                 <span className="text-lg">$</span>{product.price}
                                             </p>
                                             <div className="flex space-x-4">
@@ -153,7 +141,7 @@ export default function ProductCard() {
                                                     className="transition-colors duration-200 hover:scale-110 transform"
                                                 >
                                                     <Heart 
-                                                        className={`w-6 h-6 ${
+                                                        className={`w-6 h-6 cursor-pointer ${
                                                             favorites.has(product.id) 
                                                                 ? 'fill-red-500 text-red-500' 
                                                                 : 'text-gray-400 hover:text-red-500'
@@ -161,7 +149,7 @@ export default function ProductCard() {
                                                     />
                                                 </button>
                                                 <button className="text-gray-400 hover:text-blue-600 transition-colors duration-200 hover:scale-110 transform">
-                                                    <ShoppingCart className="w-6 h-6" />
+                                                    <ShoppingCart className="w-6 h-6 cursor-pointer" />
                                                 </button>
                                             </div>
                                         </div>
@@ -172,51 +160,18 @@ export default function ProductCard() {
                     })}
 
                     {/* Indicators */}
-                    <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 flex space-x-3 z-40">
+                    <div className="absolute mt-4 left-1/2 transform -translate-x-1/2 flex space-x-3 z-40">
                         {products.map((_, index) => (
                             <button
                                 key={index}
                                 onClick={() => goToSlide(index)}
-                                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                                className={`w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${
                                     index === currentSlide 
                                         ? 'bg-white scale-125' 
                                         : 'bg-white/40 hover:bg-white/60 hover:scale-110'
                                 }`}
                             />
                         ))}
-                    </div>
-
-                    {/* Controls */}
-                    <div className="absolute -bottom-28 left-1/2 transform -translate-x-1/2 flex space-x-4 z-40">
-                        <button
-                            onClick={prevSlide}
-                            className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 hover:scale-110 transition-all duration-300 flex items-center justify-center shadow-lg"
-                        >
-                            <ChevronLeft className="w-6 h-6" />
-                        </button>
-                        <button
-                            onClick={togglePlayPause}
-                            className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 hover:scale-110 transition-all duration-300 flex items-center justify-center shadow-lg"
-                        >
-                            {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
-                        </button>
-                        <button
-                            onClick={nextSlide}
-                            className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 hover:scale-110 transition-all duration-300 flex items-center justify-center shadow-lg"
-                        >
-                            <ChevronRight className="w-6 h-6" />
-                        </button>
-                    </div>
-
-                    {/* Progress Bar */}
-                    <div className="absolute -bottom-8 left-0 right-0 h-1 bg-white/20 rounded-full overflow-hidden z-40">
-                        <div 
-                            className="h-full bg-white/80 rounded-full transition-all duration-100 ease-linear"
-                            style={{
-                                width: isPlaying ? '100%' : '0%',
-                                animation: isPlaying ? 'progress 4s linear infinite' : 'none'
-                            }}
-                        />
                     </div>
                 </div>
             </div>
